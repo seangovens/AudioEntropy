@@ -54,6 +54,8 @@ public class AudioCapture extends Thread {
 			numRead = mic.read(d, 0, d.length);
 			data.write(d, 0, numRead);
 		}
+		
+		mic.stop();
 	}
 	
 	public void stopListening() {
