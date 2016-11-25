@@ -3,7 +3,7 @@ package project;
 import java.io.ByteArrayOutputStream;
 
 public class Collector {
-	static final int NUM_SEC = 5;
+	static final int NUM_SEC = 120;
 	
 	public static void main(String[] args) {
 		ByteArrayOutputStream in = new ByteArrayOutputStream();
