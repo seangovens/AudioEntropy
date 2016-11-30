@@ -21,12 +21,18 @@ public class Collector {
 		}
 		audio.stopListening();
 		
+		
+		
 		System.out.printf("\rSize of output: %d\n", in.size());
 		
 		Measurement m = new Measurement(in);
-		System.out.printf("Frequency Difference: %.6f\n", m.getFreqData());
-		System.out.printf("Runs test: %.6f\n", m.getRunsData());
-		System.out.printf("Naive min entropy: %.6f\n", m.getNaiveMinEntropy());
-		System.out.printf("Shannon entropy: %.6f\n", m.getShannonEntropy());
+		
+		byte[] random = fileManager.readFile("randomBytes");
+		Measurement m2 = new Measurement(random);
+		
+		System.out.printf("Frequency Difference: %.6f\n", m2.getFreqData());
+		System.out.printf("Runs test: %.6f\n", m2.getRunsData());
+		System.out.printf("Naive min entropy: %.6f\n", m2.getNaiveMinEntropy());
+		System.out.printf("Shannon entropy: %.6f\n", m2.getShannonEntropy());
 	}
 }

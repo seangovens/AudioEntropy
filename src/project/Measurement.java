@@ -34,6 +34,22 @@ public class Measurement {
 		}*/
 	}
 	
+	public Measurement(byte[] data) {
+		intData = new int[data.length / 32];
+		
+		byte lastSym = 0;
+		for (int i = 0; i < data.length - (data.length % 32); i++) {
+			byte theBit = (byte) (data[i] & 1);
+			intData[i / 32] = intData[i / 32] ^ (theBit << (i % 32));
+			if (i > 0 && lastSym != theBit) numRuns++;
+			lastSym = theBit;
+			if (theBit == 1) num1++;
+			else num0++;
+		}
+		
+		calcFreqs(freqs);
+	}
+	
 	int currMaxFreq;
 	
 	public void calcFreqs(HashMap<Integer, Integer> freqs) {
@@ -82,6 +98,8 @@ public class Measurement {
 	}
 	
 	public double getFreqData() {
+		System.out.println("#0's: " + num0);
+		System.out.println("#1's: " + num1);
 		double zeroPer = (double) num0 / (num0 + num1);
 		double onePer = (double) num1 / (num0 + num1);
 		
